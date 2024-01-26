@@ -39,4 +39,12 @@ public class EquipeServiceImplMock {
         Assertions.assertNotNull(equipes, "The list of equipes should not be null.");
         Assertions.assertEquals(2, equipes.size(), "The expected size of the list is 2.");
     }
+    @Test
+    public void testAddEquipe() {
+        Mockito.when(equipeRepository.save(Mockito.any(Equipe.class))).thenReturn(equipe1);
+        Equipe addedEquipe = equipeService.addEquipe(equipe1);
+        Assertions.assertNotNull(addedEquipe, "The added equipe should not be null.");
+        Assertions.assertEquals(equipe1.getNomEquipe(), addedEquipe.getNomEquipe(), "The expected name is '...'");
+        Assertions.assertEquals(addedEquipe.getNomEquipe(), addedEquipe.getNomEquipe(), "The expected prenom is '...'");
+    }
 }
